@@ -13,9 +13,11 @@ public class Paginator {
         double x = text.length();
         String[] splitedMessages = new String[(int)Math.ceil(x/this.max_text_length)];
 
-        for(int i = 0; i < splitedMessages.length;  i++){
-            splitedMessages[i] = text.substring(i*(this.max_text_length-1), i*this.max_text_length);
+        for(int i = 0; i < splitedMessages.length-1;  i++){
+            splitedMessages[i] = text.substring(i*(this.max_text_length), (i+1)*this.max_text_length);
         }
+
+            splitedMessages[splitedMessages.length-1] = text.substring((splitedMessages.length-1)*this.max_text_length);
 
         return splitedMessages;
     }
