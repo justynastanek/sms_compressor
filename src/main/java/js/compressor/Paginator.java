@@ -1,5 +1,8 @@
 package js.compressor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Paginator {
 
     int max_text_length = 160;
@@ -11,14 +14,14 @@ public class Paginator {
     public String[] paginate(String text){
 
         double x = text.length();
-        String[] splitedMessages = new String[(int)Math.ceil(x/this.max_text_length)];
+        List<String> splitedMessages = new ArrayList<>();
 
-        for(int i = 0; i < splitedMessages.length-1;  i++){
-            splitedMessages[i] = text.substring(i*(this.max_text_length), (i+1)*this.max_text_length);
+        for(int i = 0; i < (int)Math.ceil(x/this.max_text_length)-1;  i++){
+            splitedMessages.add(text.substring(i*(this.max_text_length), (i+1)*this.max_text_length));
         }
 
-            splitedMessages[splitedMessages.length-1] = text.substring((splitedMessages.length-1)*this.max_text_length);
+            splitedMessages.add(text.substring((splitedMessages.size())*this.max_text_length));
 
-        return splitedMessages;
+        return splitedMessages.toArray(new String[0]);
     }
 }
